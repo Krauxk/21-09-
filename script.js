@@ -54,7 +54,6 @@ function crearPetalo() {
 
 
     const flores = [
-        "🌼",
         "💛",
         "🌻",
         "✨"
