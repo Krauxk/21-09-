@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   PANTALLAS
+========================= */
+
+.pantalla {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   INICIO
+========================= */
+
+.inicio {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #372a18 0%,
+            #18120c 50%,
+            #090705 100%
+        );
+
+    color: white;
+
+    z-index: 10;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+.inicio.oculto {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+.contenido-inicio {
+    max-width: 900px;
+
+    text-align: center;
+
+    animation: aparecer 1.2s ease;
+}
+
+
+.fecha {
+    margin-bottom: 25px;
+
+    color: #ffd85a;
+
+    font-size: 16px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+
+.contenido-inicio h1 {
+    font-size: clamp(
+        45px,
+        7vw,
+        95px
+    );
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+
+    font-weight: 700;
+}
+
+
+.subtitulo {
+    margin-bottom: 40px;
+
+    color: #d6d0c7;
+
+    font-size: 18px;
+}
+
+
+#abrirSorpresa {
+    padding: 16px 35px;
+
+    border: none;
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd84d,
+            #ffb92e
+        );
+
+    color: #332300;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 40px
+        rgba(255, 190, 40, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+#abrirSorpresa:hover {
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 18px 50px
+        rgba(255, 190, 40, 0.35);
+}
+
+
+/* =========================
+   SORPRESA
+========================= */
+
+.sorpresa {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 40px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fff4a9 0%,
+            #ffd95c 45%,
+            #e6aa25 100%
+        );
+}
+
+
+/* BRILLO DE FONDO */
+
+.sorpresa::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.22);
+
+    filter: blur(80px);
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+.mensaje {
+    position: relative;
+
+    width: min(900px, 92vw);
+
+    text-align: center;
+
+    padding: 60px 50px;
+
+    border-radius: 35px;
+
+    color: #382a08;
+
+    background:
+        rgba(255, 255, 255, 0.33);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 30px 80px
+        rgba(105, 68, 0, 0.17);
+
+    opacity: 0;
+
+    transform:
+        translateY(40px)
+        scale(0.96);
+
+    transition:
+        opacity 1.4s ease,
+        transform 1.4s ease;
+}
+
+
+.sorpresa.activa .mensaje {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+.flor-grande {
+    font-size: 75px;
+
+    margin-bottom: 15px;
+
+    animation:
+        flotar 3s ease-in-out infinite;
+}
+
+
+.pequeno {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+
+.mensaje h2 {
+    font-size: clamp(
+        42px,
+        6vw,
+        75px
+    );
+
+    line-height: 1;
+
+    margin-bottom: 30px;
+}
+
+
+.mensaje h2 span {
+    display: inline-block;
+
+    animation:
+        latido 1.5s infinite;
+}
+
+
+.texto {
+    max-width: 700px;
+
+    margin:
+        0 auto 25px;
+
+    font-size: clamp(
+        18px,
+        2vw,
+        23px
+    );
+
+    line-height: 1.6;
+}
+
+
+.texto-final {
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+.ramo {
+    margin-top: 35px;
+
+    font-size: clamp(
+        30px,
+        5vw,
+        48px
+    );
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================
+   PÉTALOS
+========================= */
+
+.petalo {
+    position: absolute;
+
+    top: -50px;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    animation:
+        caer linear forwards;
+
+    z-index: 2;
+}
+
+
+@keyframes caer {
+
+    0% {
+        transform:
+            translateY(-50px)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0.7;
+    }
+
+}
+
+
+@keyframes flotar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
+
+
+@keyframes latido {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .sorpresa {
+        padding: 20px;
+    }
+
+
+    .mensaje {
+        padding:
+            40px
+            22px;
+
+        border-radius: 25px;
+    }
+
+
+    .flor-grande {
+        font-size: 60px;
+    }
+
+
+    .ramo {
+        letter-spacing: 2px;
+    }
+
+}
