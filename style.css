@@ -8,7 +8,12 @@
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+}
+
+
+html {
+    scroll-behavior: smooth;
 }
 
 
@@ -18,7 +23,10 @@ body {
         Arial,
         sans-serif;
 
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: #e6aa25;
 }
 
 
@@ -33,7 +41,7 @@ body {
 
 
 /* =========================
-   INICIO
+   PANTALLA INICIAL
 ========================= */
 
 .inicio {
@@ -56,7 +64,7 @@ body {
 
     color: white;
 
-    z-index: 10;
+    z-index: 100;
 
     transition:
         opacity 1s ease,
@@ -67,15 +75,17 @@ body {
 .inicio.oculto {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
 
 
 .contenido-inicio {
-    max-width: 900px;
+    width: min(900px, 100%);
 
     text-align: center;
 
-    animation: aparecer 1.2s ease;
+    animation:
+        aparecer 1.2s ease;
 }
 
 
@@ -85,6 +95,8 @@ body {
     color: #ffd85a;
 
     font-size: 16px;
+
+    font-weight: 600;
 
     letter-spacing: 5px;
 
@@ -108,18 +120,31 @@ body {
 
 
 .subtitulo {
-    margin-bottom: 40px;
+    max-width: 600px;
+
+    margin:
+        0 auto
+        40px;
 
     color: #d6d0c7;
 
     font-size: 18px;
+
+    line-height: 1.6;
 }
 
 
+/* =========================
+   BOTÓN INICIAL
+========================= */
+
 #abrirSorpresa {
-    padding: 16px 35px;
+    padding:
+        16px
+        35px;
 
     border: none;
+
     border-radius: 50px;
 
     background:
@@ -132,6 +157,7 @@ body {
     color: #332300;
 
     font-size: 17px;
+
     font-weight: 700;
 
     cursor: pointer;
@@ -157,6 +183,13 @@ body {
 }
 
 
+#abrirSorpresa:active {
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+
 /* =========================
    SORPRESA
 ========================= */
@@ -165,71 +198,97 @@ body {
     position: relative;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+
+    min-height: 100vh;
 
     overflow: hidden;
 
-    padding: 40px;
+    padding:
+        70px
+        25px
+        100px;
 
     background:
         radial-gradient(
-            circle at center,
-            #fff4a9 0%,
-            #ffd95c 45%,
+            circle at top,
+            #fff8c7 0%,
+            #ffe77d 25%,
+            #ffd95c 50%,
             #e6aa25 100%
         );
 }
 
 
-/* BRILLO DE FONDO */
+/* BRILLO DEL FONDO */
 
 .sorpresa::before {
     content: "";
 
-    position: absolute;
+    position: fixed;
 
-    width: 700px;
-    height: 700px;
+    top: -250px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 800px;
+    height: 800px;
 
     border-radius: 50%;
 
     background:
         rgba(255, 255, 255, 0.22);
 
-    filter: blur(80px);
+    filter:
+        blur(90px);
+
+    pointer-events: none;
 }
 
 
 /* =========================
-   MENSAJE
+   TARJETA PRINCIPAL
 ========================= */
 
 .mensaje {
     position: relative;
 
-    width: min(900px, 92vw);
+    z-index: 5;
+
+    width: min(
+        900px,
+        94vw
+    );
 
     text-align: center;
 
-    padding: 60px 50px;
+    padding:
+        60px
+        55px;
 
     border-radius: 35px;
 
     color: #382a08;
 
     background:
-        rgba(255, 255, 255, 0.33);
+        rgba(255, 255, 255, 0.38);
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.55);
+        rgba(255, 255, 255, 0.65);
 
-    backdrop-filter: blur(15px);
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
 
     box-shadow:
         0 30px 80px
-        rgba(105, 68, 0, 0.17);
+        rgba(105, 68, 0, 0.18);
 
     opacity: 0;
 
@@ -252,18 +311,28 @@ body {
 }
 
 
-.flor-grande {
-    font-size: 75px;
+/* =========================
+   FLOR SUPERIOR
+========================= */
 
+.flor-grande {
     margin-bottom: 15px;
+
+    font-size: 78px;
+
+    line-height: 1;
 
     animation:
         flotar 3s ease-in-out infinite;
 }
 
 
+/* =========================
+   FECHA / TEXTO PEQUEÑO
+========================= */
+
 .pequeno {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
     font-size: 14px;
 
@@ -272,19 +341,27 @@ body {
     letter-spacing: 5px;
 
     text-transform: uppercase;
+
+    color: #6c4b00;
 }
 
 
+/* =========================
+   TÍTULO
+========================= */
+
 .mensaje h2 {
+    margin-bottom: 40px;
+
     font-size: clamp(
         42px,
         6vw,
         75px
     );
 
-    line-height: 1;
+    line-height: 1.05;
 
-    margin-bottom: 30px;
+    color: #3d2b00;
 }
 
 
@@ -296,31 +373,63 @@ body {
 }
 
 
-.texto {
-    max-width: 700px;
+/* =========================
+   TEXTO LARGO
+========================= */
 
-    margin:
-        0 auto 25px;
-
-    font-size: clamp(
-        18px,
-        2vw,
-        23px
+.texto-largo {
+    width: min(
+        720px,
+        100%
     );
 
-    line-height: 1.6;
+    margin:
+        0 auto;
+
+    text-align: left;
 }
 
 
-.texto-final {
-    font-size: 20px;
+.texto-largo p {
+    margin-bottom: 24px;
+
+    font-size: 19px;
+
+    line-height: 1.8;
+
+    color: #44330d;
+}
+
+
+.texto-largo p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* PÁRRAFOS DESTACADOS */
+
+.texto-largo .destacado {
+    margin-top: 38px;
+    margin-bottom: 16px;
+
+    text-align: center;
+
+    font-size: 25px;
 
     font-weight: 700;
+
+    line-height: 1.5;
+
+    color: #332400;
 }
 
 
+/* =========================
+   RAMO
+========================= */
+
 .ramo {
-    margin-top: 35px;
+    margin-top: 40px;
 
     font-size: clamp(
         30px,
@@ -329,49 +438,90 @@ body {
     );
 
     letter-spacing: 8px;
+
+    line-height: 1.4;
 }
 
 
 /* =========================
-   PÉTALOS
+   FIRMA
 ========================= */
 
-.petalo {
-    position: absolute;
+.firma {
+    margin-top: 30px;
 
-    top: -50px;
+    font-size: 17px;
 
-    font-size: 25px;
+    font-weight: 600;
+
+    font-style: italic;
+
+    color: #5e4205;
+}
+
+
+/* =========================
+   PÉTALOS / FLORES
+========================= */
+
+#petalos {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     pointer-events: none;
 
-    animation:
-        caer linear forwards;
+    overflow: hidden;
 
     z-index: 2;
 }
 
 
+.petalo {
+    position: absolute;
+
+    top: -60px;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    z-index: 2;
+
+    animation:
+        caer linear forwards;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
 @keyframes caer {
 
     0% {
         transform:
-            translateY(-50px)
+            translateY(-60px)
             rotate(0deg);
 
         opacity: 0;
     }
 
+
     10% {
         opacity: 1;
     }
 
+
     100% {
         transform:
-            translateY(110vh)
+            translateY(115vh)
             rotate(720deg);
 
-        opacity: 0.7;
+        opacity: 0.5;
     }
 
 }
@@ -381,11 +531,16 @@ body {
 
     0%,
     100% {
-        transform: translateY(0);
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 
+
     50% {
-        transform: translateY(-10px);
+        transform:
+            translateY(-10px)
+            rotate(2deg);
     }
 
 }
@@ -395,11 +550,14 @@ body {
 
     0%,
     100% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
 
+
     50% {
-        transform: scale(1.15);
+        transform:
+            scale(1.15);
     }
 
 }
@@ -414,6 +572,7 @@ body {
             translateY(20px);
     }
 
+
     to {
         opacity: 1;
 
@@ -425,32 +584,283 @@ body {
 
 
 /* =========================
-   CELULAR
+   TABLETS
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 
     .sorpresa {
-        padding: 20px;
+        padding:
+            50px
+            20px
+            80px;
     }
 
 
     .mensaje {
         padding:
-            40px
-            22px;
+            50px
+            40px;
+    }
 
-        border-radius: 25px;
+
+    .texto-largo p {
+        font-size: 18px;
+
+        line-height: 1.75;
+    }
+
+}
+
+
+/* =========================
+   CELULARES
+========================= */
+
+@media (max-width: 600px) {
+
+    .inicio {
+        padding:
+            25px
+            20px;
+    }
+
+
+    .fecha {
+        margin-bottom: 20px;
+
+        font-size: 12px;
+
+        letter-spacing: 4px;
+    }
+
+
+    .contenido-inicio h1 {
+        font-size: clamp(
+            42px,
+            13vw,
+            60px
+        );
+
+        line-height: 1.05;
+
+        margin-bottom: 22px;
+    }
+
+
+    .subtitulo {
+        margin-bottom: 32px;
+
+        padding:
+            0
+            8px;
+
+        font-size: 16px;
+
+        line-height: 1.6;
+    }
+
+
+    #abrirSorpresa {
+        width: min(
+            280px,
+            100%
+        );
+
+        padding:
+            15px
+            25px;
+
+        font-size: 16px;
+    }
+
+
+    /* SORPRESA */
+
+    .sorpresa {
+        padding:
+            30px
+            12px
+            60px;
+    }
+
+
+    /* TARJETA */
+
+    .mensaje {
+        width: 100%;
+
+        padding:
+            35px
+            20px
+            40px;
+
+        border-radius: 24px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(105, 68, 0, 0.17);
+    }
+
+
+    /* FLOR */
+
+    .flor-grande {
+        margin-bottom: 12px;
+
+        font-size: 58px;
+    }
+
+
+    /* FECHA */
+
+    .pequeno {
+        margin-bottom: 12px;
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+
+    /* TÍTULO */
+
+    .mensaje h2 {
+        margin-bottom: 30px;
+
+        font-size: clamp(
+            34px,
+            10vw,
+            44px
+        );
+
+        line-height: 1.1;
+    }
+
+
+    /* TEXTO */
+
+    .texto-largo {
+        width: 100%;
+    }
+
+
+    .texto-largo p {
+        margin-bottom: 21px;
+
+        font-size: 16px;
+
+        line-height: 1.72;
+
+        text-align: left;
+    }
+
+
+    .texto-largo .destacado {
+        margin-top: 30px;
+        margin-bottom: 15px;
+
+        font-size: 20px;
+
+        line-height: 1.5;
+
+        text-align: center;
+    }
+
+
+    /* RAMO */
+
+    .ramo {
+        margin-top: 32px;
+
+        font-size: 27px;
+
+        letter-spacing: 1px;
+
+        line-height: 1.6;
+    }
+
+
+    /* FIRMA */
+
+    .firma {
+        margin-top: 24px;
+
+        font-size: 15px;
+
+        line-height: 1.5;
+    }
+
+}
+
+
+/* =========================
+   CELULARES PEQUEÑOS
+========================= */
+
+@media (max-width: 380px) {
+
+    .sorpresa {
+        padding:
+            20px
+            8px
+            45px;
+    }
+
+
+    .mensaje {
+        padding:
+            30px
+            16px
+            35px;
+
+        border-radius: 20px;
     }
 
 
     .flor-grande {
-        font-size: 60px;
+        font-size: 52px;
+    }
+
+
+    .mensaje h2 {
+        font-size: 32px;
+    }
+
+
+    .texto-largo p {
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    .texto-largo .destacado {
+        font-size: 19px;
     }
 
 
     .ramo {
-        letter-spacing: 2px;
+        font-size: 24px;
+    }
+
+}
+
+
+/* =========================
+   REDUCIR ANIMACIONES
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
     }
 
 }
